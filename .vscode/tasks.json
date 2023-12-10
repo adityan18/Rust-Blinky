@@ -19,7 +19,8 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "dependsOn": "Cargo Clean"
         },
         {
             "label": "Cargo Build (release)",
@@ -57,7 +58,15 @@
             "command": "cargo",
             "args": ["clean"],
             "problemMatcher": [],
-            "group": "build"
+            "group": "test"
         },
+        {
+            "label": "Cargo Flash",
+            "command": "cargo",
+            "type": "process",
+            "args": ["flash", "--chip=STM32F401CCux"],
+            "dependsOn": ["Cargo Build (debug)"],
+            "group": "test"
+        }
     ]
 }

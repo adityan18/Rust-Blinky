@@ -81,8 +81,7 @@ impl GPIO {
 
     pub fn clear_gpio(gpiox: &GPIOX, pin: u32) {
         let config: GpioConfigAddr = Self::gpio_configs(gpiox);
-        let val: u32;
-        val = 1 << (pin + 16);
+        let val: u32 = 1 << (pin + 16);
         unsafe {
             core::ptr::write_volatile(config.bsr_r as *mut u32, val);
         }
